@@ -56,5 +56,33 @@
         git pull: mengambil commit dari server jika ada perubahan di server
       </li>
     </ul>
+
+    <!-- branch -->
+    <h1>Branch</h1>
+    <p>Branch adalah cabang atau copy-an dari repo, berikut perintah branch</p>
+    <ul>
+      <li>git branch: melihat semua branch (local)</li>
+      <li>git branch --all: melihat semua branch (public)</li>
+      <li>git branch nama_branch: membuat branch baru</li>
+      <li>branch dapat dibuat lebih dari 2, sesuai dengan kebutuhan</li>
+      <li>git checkout nama_branch: berpindah branch</li>
+      <li>
+        ketika kita berpindah branch, maka perubahan commit hanya akan tersimpan
+        di branch yang kita pilih saja
+      </li>
+      <li>
+        git branch -d nama_branch: menghapus branch jika sudah tidak dibutuhkan
+        lagi
+      </li>
+      <li>
+        git merge nama_branch: menggabungkan branch, relatif pada branch yang
+        dipilih / aktif saat ini, pastikan semua file sudah dicommit
+      </li>
+      <li>
+        ketika ada conflict yakni ketika 2 merge memiliki perubahan pada file
+        yang sama maka commit tidak bisa dilakukan kecuali setelah conflict
+        diselesaikan
+      </li>
+    </ul>
   </body>
 </html>
