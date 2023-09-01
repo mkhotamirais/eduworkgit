@@ -1,11 +1,10 @@
-const person = {
-  name: "ahmad",
-  age: 20,
-  city: "jakarta",
-};
-
-function callPerson({ age, name: n, country = "indo" }) {
-  console.log(n, age, country);
+class Person {
+  constructor(nama) {
+    this.nama = nama;
+  }
+  call(nama) {
+    console.log(nama, this.nama);
+  }
 }
 
-callPerson(person);
+new Person("ahmad").call("siti");
