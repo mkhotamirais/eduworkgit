@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>function</title>
+  </head>
+  <body>
+    <h1>hello world</h1>
+    <p>hello my name is khotami</p>
+    <script>
+      alert(
+        `Selamat Datang di permainan tebak angka
+pemain terdiri dari 2 peserta dengan 5 ronde, pemain yang menebak angka dengan benar dapat 1 poin. Pemain yang poinnya paling banyak jadi pemenang.
+Selamat Bermain
+        `
+      );
+      angka = 3;
+      let tebak1;
+      let tebak2;
+      let poin1 = 0;
+      let poin2 = 0;
+      let ronde = 1;
+      let hasil = "tidak ada tebakan yang benar";
+      let lanjut = true;
+      let sama = true;
+
+      function tebak() {
+        tebak1 = prompt(`Ronde ${ronde}:
+pemain 1: tebak angka 1, 2 atau 3`);
+        tebak2 = prompt(`Ronde ${ronde}
+pemain 2: tebak angka 1, 2 atau 3`);
+        tebak1 >= 1 && tebak1 <= 3
+          ? (tebak1 = tebak1)
+          : (tebak1 = "tidak sesuai");
+        tebak2 >= 1 && tebak2 <= 3
+          ? (tebak2 = tebak2)
+          : (tebak2 = "tidak sesuai");
+        if (tebak1 == tebak2) {
+          sama = confirm("Tebakan tidak boleh sama, ulang kembali?");
+          if (sama) {
+            tebak();
+            return;
+          } else {
+            return;
+          }
+        }
+        if (tebak1 == angka) {
+          poin1 += 1;
+          hasil = "pemain pertama benar, dapat poin 1";
+        }
+        if (tebak2 == angka) {
+          poin2 += 1;
+          hasil = "pemain kedua benar, dapat poin 1";
+        }
+
+        alert(
+          `Ronde ${ronde}:
+Tebakan pemain pertama (${tebak1}), tebakan pemain kedua (${tebak2})
+Tebakan yang benar ${angka}
+${hasil}
+
+skor:
+Pemain pertama: ${poin1} poin
+Pemain Kedua: ${poin2} poin
+`
+        );
+        ronde++;
+        if (ronde <= 5) {
+          lanjut = confirm(`lanjut ke ronde ${ronde}`);
+          if (lanjut) {
+            tebak();
+          } else {
+            return;
+          }
+        }
+      }
+      tebak();
+
+      if (poin1 > poin2) {
+        alert(`Pemain pertama menang dengan poin ${poin1}, selamat`);
+      } else if (poin2 > poin1) {
+        alert(`Pemain kedua menang dengan poin ${poin2}, selamat`);
+      } else if (poin1 == poin2) {
+        alert("Hasil Seri");
+      }
+      alert("Permainan selesai");
+    </script>
+  </body>
+</html>
