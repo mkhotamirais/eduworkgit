@@ -1,10 +1,14 @@
-class Person {
-  constructor(nama) {
-    this.nama = nama;
-  }
-  call(nama) {
-    console.log(nama, this.nama);
-  }
+function ambilData(url, callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      return callback(JSON.parse(this.responseText));
+    }
+  };
+  xhr.open("GET", url);
+  xhr.send();
 }
 
-new Person("ahmad").call("siti");
+const data = ambilData("https://jsonplaceholder.typicode.com/users", (data) => {
+  console.log(data);
+});
