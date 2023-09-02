@@ -1,0 +1,4 @@
+https://any-api.com/
+    http://www.omdbapi.com/?i=tt3896198&apikey=99773434
+https://github.com/toddmotto/public-apis
+https://github.com/farizdotid/DAFTAR-API-LOKAL-INDONESIA
