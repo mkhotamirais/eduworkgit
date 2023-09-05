@@ -1,35 +1,37 @@
 const btn = document.getElementById("button-addon2");
-let rlt = document.getElementById("results");
+let results = document.getElementById("results");
 btn.addEventListener("click", function () {
   btn.querySelector("i").className = "fa fa-spinner fa-spin";
-  hasil(rlt);
+  hasil(results);
 });
 
 document.querySelector(".s-input").addEventListener("keyup", function (e) {
   if (e.key == "Enter") {
     btn.querySelector("i").className = "fa fa-spinner fa-spin";
-    hasil(rlt);
+    hasil(results);
   }
 });
 
-function hasil(rlt) {
-  rlt.innerHTML = `<div class="text-center display-3">tunggu sebentar...</div>`;
+function hasil(results) {
+  results.innerHTML = `<div class="text-center display-3">tunggu sebentar...</div>`;
   let key = document.querySelector(".s-input").value;
   document.querySelector(".s-input").value = "";
+  document.querySelector(".s-input").focus();
+
   setTimeout(() => {
-    fetch(
-      `https://newsapi.org/v2/${
-        key == "" ? "top-headlines?country=us&" : "everything?"
-      }apiKey=9c6131f2202d4dafb822bc76564f80c4&q=${key}`
-    )
-      .then((res) => res.json())
+    axios
+      .get(
+        `https://newsapi.org/v2/${
+          key == "" ? "top-headlines?country=us&" : "everything?"
+        }apiKey=9c6131f2202d4dafb822bc76564f80c4&q=${key}`
+      )
       .then((res) => {
-        rlt.innerHTML = "";
-        if (res.totalResults == 0) {
-          rlt.innerHTML = "kosong";
+        results.innerHTML = "";
+        if (res.data.articles.totalResults == 0) {
+          results.innerHTML = "kosong";
         }
-        res.articles.map((item) => {
-          rlt.innerHTML += `
+        res.data.articles.map((item) => {
+          results.innerHTML += `
           <div class="col-lg-4 mb-3">
             <div class="card" style="width: 18rem">
               <img src="${
@@ -50,11 +52,10 @@ function hasil(rlt) {
           `;
         });
       })
-      .catch(() => {})
-      .finally(() => {
+      .catch((err) => console.log(err))
+      .finally(function () {
         btn.querySelector("i").className = "fa fa-search";
       });
   }, 500);
-  // document.querySelector(".s-input").focus();
 }
-hasil(rlt);
+hasil(results);
